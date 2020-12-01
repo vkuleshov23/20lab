@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-	ofstream fout("result.txt");
+	ofstream fout("result.dot");
 
 	ParseFile file;
 	if (file.filling_adj_list("list.txt", fout) < 0) {

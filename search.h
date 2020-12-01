@@ -31,6 +31,7 @@ public:
 		bool flag = false;
 		visited[vertex] = true;
 		stack.push_back(vertex);
+		fout << "digraph G {\n";
 		while (!stack.empty()) {
 			int cur = stack[stack.size() - 1];
 			
@@ -38,7 +39,7 @@ public:
 				if (visited[graph[cur][i]] == 0) {
 					visited[graph[cur][i]] = 1;
 					stack.push_back(graph[cur][i]);
-					fout << "straight: " << stack[stack.size() - 2] << " - " << stack[stack.size() - 1] << '\n';
+					fout << "	" << stack[stack.size() - 2] << " -> " << stack[stack.size() - 1] << " [color = \"red\"];\n";
 					flag = true;
 					break;
 				}
@@ -48,8 +49,7 @@ public:
 						for (int j = 0; j < stack.size()-2; j++) {
 							for (int k = 0; k < graph[cur].size(); k++) {
 								if (graph[cur][k] == stack[j]) {
-									fout << "transverse: " << stack[stack.size() - 1] << " - " << stack[j] << '\n';
-									fout << "transverse: " << stack[j] << " - " << stack[stack.size() - 1] << '\n';
+									fout << "	" << stack[stack.size() - 1] << " -> " << stack[j] << " [color = \"blue\"];\n";
 								}
 							}
 						}
@@ -58,11 +58,12 @@ public:
 			}
 			if (i == graph[cur].size()) {
 				if (stack.size() > 1) {
-					fout << "inverse: " << stack[stack.size() - 1] << " - " << stack[stack.size() - 2] << '\n';
+					fout << "	" << stack[stack.size() - 1] << " -> " << stack[stack.size() - 2] << " [color = \"green\"];\n";
 				}
 				stack.pop_back();
 			}
 		}
+		fout << '}';
 	}
 
 };

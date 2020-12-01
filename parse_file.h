@@ -18,8 +18,8 @@ public:
 	int filling_adj_list(const string filename, ofstream& fout) {
 
 		ifstream fin(filename);
-		if(!fin.is_open()) 
-			cout << "No such file or problem with opening\n";
+		if (!fin.is_open())
+			return -1;
 
 		string buffer;
 		int value = 0;
@@ -43,7 +43,7 @@ public:
 					}
 				}
 				if (vertex >= size) {
-					fout << "non-existent vertex"; return -1;
+					 return -1;
 				}
 				break;
 			}
@@ -59,13 +59,13 @@ public:
 			tmp.clear();
 		}
 
-		for (size_t i = 0; i < size; i++) {
+		/*for (size_t i = 0; i < size; i++) {
 			for (vector<int>::iterator it = graph[i].begin(); it != graph[i].end(); ++it)
 				fout << *it << ' ';
 			fout << '\n';
 		}
 		fout << '\n';
-		fout << "vertex of the beginning " << vertex << "\n\n";
+		fout << "vertex of the beginning " << vertex << "\n\n";*/
 		return 0;
 	}
 	vector<vector<int>> get_graph() {	return graph; }
